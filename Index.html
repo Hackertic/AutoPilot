@@ -3,60 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autopilot Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        #telegram-login {
-            margin-top: 20px;
-        }
-    </style>
+    <title>Telegram Login</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to Autopilot</h1>
-    <p>Please log in using your Telegram account.</p>
-    
+    <h1>Login with Telegram</h1>
+
     <!-- Telegram Login Widget -->
-    <div id="telegram-login">
-        <script async src="https://telegram.org/js/telegram-widget.js?7"
-                data-telegram-login="@EliteAutoPilotbot"
-                data-size="large"
-                data-request-access="write"
-                data-onauth="onTelegramAuth(user)"></script>
-    </div>
-
-    <script>
-        function onTelegramAuth(user) {
-            // Handle the user data received from the Telegram Login Widget
-            console.log(user); // Just to inspect the data
-
-            // Send the user data to the backend
-            fetch('https://replit.com/@peyoolade744/Auto#app.py', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user_id: user.id,
-                    username: user.username,
-                    first_name: user.first_name,
-                    last_name: user.last_name,
-                    photo_url: user.photo_url
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('User logged in successfully:', data);
-                // Optionally, show success message on the frontend or redirect user
-                window.location.href = '/welcome'; // Example redirect to a welcome page
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
+    <script async src="https://telegram.org/js/telegram-widget.js?22"
+        data-telegram-login="EliteAutoPilotbot"
+        data-size="medium"
+        data-onauth="onTelegramAuth(user)"
+        data-request-access="write">
     </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
